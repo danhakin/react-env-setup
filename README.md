@@ -3,6 +3,8 @@ React devenv setup
 
 The basic development environment has been created based on the dev environment proposed in [hackingwithreact.com](http://www.hackingwithreact.com/)
 
+For this project we use Webpack, Babel and React for development with ES6.
+
 
 ### Dependencies
 
