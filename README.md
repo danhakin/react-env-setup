@@ -38,4 +38,13 @@ For the dev server we use 'webpack-dev-server'
 Suggested code editor is **sublime-text-3** with the following packages
 
 * Babel [https://github.com/babel/babel-sublime]()
+* Babel Snippets
+
+#### Color schemes
+
+Optimized for babel and ES6.
+
+* Monokai (default)
+* Oceanic Next Color Scheme [https://github.com/voronianski/oceanic-next-color-scheme]()
+
 
