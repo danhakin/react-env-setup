@@ -7,11 +7,6 @@ class Detail extends React.Component {
 		super(props);
 
 		this.state = { 
-			urls: {
-					"commits" : 'https://api.github.com/repos/facebook/react/commits',
-					"forks"   : 'https://api.github.com/repos/facebook/react/forks',
-					"pulls"   : 'https://api.github.com/repos/facebook/react/pulls'
-			},
 			mode: 'commits',
 			commits: [],
 			forks: [],
@@ -19,32 +14,22 @@ class Detail extends React.Component {
 		};
 	}
 
-	componentWillMount() {	
-
-		this.loadData("commits", "Error fetching commits from Github", (results) => {
-			this.setState({commits: results});
-		});
-
-		this.loadData("forks", "Error fetching forks from Github", (results) => {
-			this.setState({forks: results});
-		});
-
-		this.loadData("pulls", "Error fetching pulls from Github", (results) => {
-			this.setState({pulls: results});
-		});
-
+	componentWillMount() {
+		this.fetchFeed('commits');	
+		this.fetchFeed('forks');	
+		this.fetchFeed('pulls');	
 	}
 
-	loadData(type, error_msg, callback) {
-		console.log('loading data for ' + type);
+	fetchFeed(type) {
+		console.log('fetching feed data for ' + type);
 
-		ajax.get(this.state.urls[type])
+		ajax.get(`https://api.github.com/repos/facebook/react/${type}`)
 			.end((error, response) => {
 				if (!error && response) {
 					console.dir(type, response.body);
-					callback(response.body);
+					this.setState({ [type] : response.body });
 				} else {
-					console.log(error_msg, error);
+					console.log(`Error fetching ${type} from Github`, error);
 				}
 			});
 
