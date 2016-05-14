@@ -31,4 +31,11 @@ This is the list of dependencies included in this project:
 For the dev server we use 'webpack-dev-server'
 
 	webpack-dev-server
+	
+	
+### Code editor
+
+Suggested code editor is **sublime-text-3** with the following packages
+
+* Babel [https://github.com/babel/babel-sublime]()
 
