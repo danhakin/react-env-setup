@@ -1,5 +1,6 @@
 import React from 'react';
 import ajax from 'superagent';
+import { IndexLink, Link } from 'react-router';
 
 class Detail extends React.Component {
 
@@ -23,7 +24,9 @@ class Detail extends React.Component {
 	fetchFeed(type) {
 		console.log('fetching feed data for ' + type);
 
-		ajax.get(`https://api.github.com/repos/facebook/react/${type}`)
+		const baseUrl = 'https://api.github.com/repos/facebook';
+
+		ajax.get(`${baseUrl}/${this.props.params.repo}/${type}`)
 			.end((error, response) => {
 				if (!error && response) {
 					console.dir(type, response.body);
@@ -49,7 +52,7 @@ class Detail extends React.Component {
 
 			return (
 			<p key={index}>
-				<strong>{author}</strong>
+				<Link to={ `user/${author}` }>{author}</Link>
 				<a href={commit.html_url}>{commit.commit.message}</a>
 			</p>
 			);
@@ -65,7 +68,7 @@ class Detail extends React.Component {
 
 			return (
 			<p key={index}>
-				<strong>{owner}</strong>
+				<Link to={ `user/${owner}` }>{owner}</Link>
 				<a href={fork.html_url}>{fork.html_url}</a> at {fork.created_at}.
 			</p>
 			);
@@ -81,7 +84,7 @@ class Detail extends React.Component {
 
 			return (
 			<p key={index}>
-				<strong>{user}</strong>
+				<Link to={ `user/${user}` }>{user}</Link>  
 				<a href={pull.html_url}>{pull.body}</a>.
 			</p>
 			);
@@ -103,6 +106,10 @@ class Detail extends React.Component {
 
 		return ( 
 			<div>
+				<p>
+					You are here: <IndexLink to="/" activeClassName="active">Home</IndexLink> > {this.props.params.repo}
+				</p>
+
 				<button onClick={this.selectMode.bind(this, 'commits')}>Show Commits</button>
 				<button onClick={this.selectMode.bind(this, 'forks')}>Show Forks</button>
 				<button onClick={this.selectMode.bind(this, 'pulls')}>Show Pulls</button>
