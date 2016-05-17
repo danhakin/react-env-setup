@@ -115,9 +115,9 @@ class Detail extends React.Component {
 					You are here: <IndexLink to="/" activeClassName="active">Home</IndexLink> > {this.props.params.repo}
 				</p>
 
-				<button onClick={this.selectMode.bind(this, 'commits')}>Show Commits</button>
-				<button onClick={this.selectMode.bind(this, 'forks')}>Show Forks</button>
-				<button onClick={this.selectMode.bind(this, 'pulls')}>Show Pulls</button>
+				<button onClick={this.selectMode.bind(this, 'commits')} ref="commits">Show Commits</button>
+				<button onClick={this.selectMode.bind(this, 'forks')} ref="forks">Show Forks</button>
+				<button onClick={this.selectMode.bind(this, 'pulls')} ref="pulls">Show Pulls</button>
 				{content}
 
 			</div>
