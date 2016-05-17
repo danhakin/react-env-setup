@@ -24,6 +24,11 @@ class Detail extends React.Component {
 	fetchFeed(type) {
 		console.log('fetching feed data for ' + type);
 
+		if (this.props.params.repo === '') {
+			// empty remo name, bail out!
+			return;
+		}
+
 		const baseUrl = 'https://api.github.com/repos/facebook';
 
 		ajax.get(`${baseUrl}/${this.props.params.repo}/${type}`)
