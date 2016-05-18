@@ -33,4 +33,18 @@ describe('Detail', () => {
 		expect(rendered.state.mode).toEqual('forks');
 	});
 
+	it('fetches forks from Github', () => {
+		const rendered = renderDetailComponent('react');
+
+		setTimeout(
+			setInterval(() => {
+				if (rendered.state.forks.length > 0) {
+					clearInterval();
+					expect(rendered.state.forks.length).toEqual(30);
+				}}, 1000)
+		, 2000);
+		
+	});
+
+
 });
